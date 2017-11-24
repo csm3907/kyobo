@@ -1,7 +1,9 @@
 package com.example.choiseungmin.test_expandable;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
@@ -14,6 +16,16 @@ import com.kakao.network.ErrorResult;
 import com.kakao.util.helper.log.Logger;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,6 +48,98 @@ public class SuccessActivity extends AppCompatActivity {
     private String profileUrl;
 
     Intent intent;
+    Handler mHandler;
+
+    class BackGround extends AsyncTask<String, Void, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            JSONObject jObject = null;
+            try {
+                // PHP에서 받아온 JSON 데이터를 JSON오브젝트로 변환
+                jObject = new JSONObject(result);
+                // results라는 key는 JSON배열로 되어있다.
+                JSONArray results = jObject.getJSONArray("data");
+                String zz = "";
+                for ( int i = 0; i < results.length(); ++i ) {
+                    JSONObject temp = results.getJSONObject(i);
+
+                    if(temp.get("SEND_STATUS").toString().compareTo("Y") == 0){
+                        requestSendMemo();
+                        new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","UPDATE SEND_MESSAGE SET SEND_STATUS = 'N' WHERE UID = '"+temp.get("UID").toString()+"' AND FUND_NAME = '"+temp.get("FUND_NAME").toString()+"'");
+                    }
+
+                }
+
+                mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // mTextViewResult.setText(result);
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String serverURL = (String)params[0];
+            String query = (String)params[5];
+            String db_ip = (String)params[1];
+            String db_id = (String)params[2];
+            String db_password = (String)params[3];
+            String db_dbName = (String)params[4];
+            String postParameters = "query=" + query + "&ip=" + db_ip+ "&id=" + db_id+ "&password=" + db_password+ "&db=" + db_dbName; // post 전송
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                // input
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+                return sb.toString();
+
+
+            } catch (Exception e) {
+                return new String("Error: " + e.getMessage());
+            }
+
+        }
+    }
 
     private void redirectLoginActivity() {
         Log.d("TAG ","LoginActivity");
@@ -118,6 +222,10 @@ public class SuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success);
 
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
+
+
         intent = getIntent();
 
         url = intent.getStringExtra("url");
@@ -131,7 +239,7 @@ public class SuccessActivity extends AppCompatActivity {
         Log.d("result : ",url + nickname + email);
         setLayoutText();
 
-        requestSendMemo();
+
 
     }
 
