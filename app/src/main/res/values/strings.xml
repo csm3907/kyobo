@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Test_Expandable</string>
+    <string name="myString">Mine</string>
+    <string name="kakao_app_key">25b54a1599e5bf05b906f9e5a468247c</string>
+    <string name="kakao_scheme">kakao25b54a1599e5bf05b906f9e5a468247c</string>
+    <string name="kakaolink_host">kakaolink</string>
+    <string name="action_settings">Settings</string>
+</resources>
