@@ -56,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     HashMap<String, List<String>> expandableListDetail;
     ImageView imageView;
 
-    SessionCallback callback;
     Button button;
     FeedTemplate params;
 
@@ -75,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        callback = new SessionCallback();
-        Session.getCurrentSession().addCallback(callback);
 
         imageView = findViewById(R.id.imageView);
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
@@ -163,70 +159,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return null;
-    }
-
-
-    private class SessionCallback implements ISessionCallback {
-
-        @Override
-        public void onSessionOpened() {
-
-            UserManagement.requestMe(new MeResponseCallback() {
-
-                @Override
-                public void onFailure(ErrorResult errorResult) {
-                    String message = "failed to get user info. msg=" + errorResult;
-                    Logger.d(message);
-
-                    ErrorCode result = ErrorCode.valueOf(errorResult.getErrorCode());
-                    if (result == ErrorCode.CLIENT_ERROR_CODE) {
-                        finish();
-                    } else {
-                        //redirectMainActivity();
-                    }
-                }
-
-                @Override
-                public void onSessionClosed(ErrorResult errorResult) {
-                }
-
-                @Override
-                public void onNotSignedUp() {
-                }
-
-                @Override
-                public void onSuccess(UserProfile userProfile) {
-                    //로그인에 성공하면 로그인한 사용자의 일련번호, 닉네임, 이미지url등을 리턴합니다.
-                    //사용자 ID는 보안상의 문제로 제공하지 않고 일련번호는 제공합니다.
-                    Log.e("UserProfile", userProfile.toString());
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    intent.putExtra("nickname", userProfile.getNickname());
-
-                    if(userProfile.getEmail() == null){
-                        intent.putExtra("email","no email");
-                    }else{
-                        intent.putExtra("email",userProfile.getEmail());
-                    }
-
-                    if(userProfile.getProfileImagePath() == null){
-                        intent.putExtra("url","https://www.google.co.kr/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwj0zKOk0MbXAhVCFpQKHYTkDO8QjRwIBw&url=http%3A%2F%2Fnews.sbs.co.kr%2Fnews%2FendPage.do%3Fnews_id%3DN1004259221&psig=AOvVaw1l1ZkA3q4zo3hYdqRkIxDY&ust=1511043083837874");
-                    }else{
-                        intent.putExtra("url",userProfile.getProfileImagePath());
-                    }
-
-
-                    startActivity(intent);
-                    finish();
-                }
-            });
-
-        }
-
-        @Override
-        public void onSessionOpenFailed(KakaoException exception) {
-            // 세션 연결이 실패했을때
-            // 어쩔때 실패되는지는 테스트를 안해보았음 ㅜㅜ
-        }
     }
 
 }

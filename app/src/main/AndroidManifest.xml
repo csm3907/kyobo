@@ -37,6 +37,13 @@
                     android:scheme="@string/kakao_scheme" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SuccessActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

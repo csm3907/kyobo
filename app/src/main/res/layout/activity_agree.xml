@@ -44,20 +44,24 @@
         android:textAlignment="center"
         android:textColor="#858585"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/com_kakao_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="196dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="39dp"
-        android:background="@drawable/round_button"
-        android:text="서비스 이용"
+
+    <com.kakao.usermgmt.LoginButton
+        android:id="@+id/com_kakao_login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="538dp">
+
+    </com.kakao.usermgmt.LoginButton>
 </android.support.constraint.ConstraintLayout>
