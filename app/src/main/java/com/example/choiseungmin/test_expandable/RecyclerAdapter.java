@@ -5,49 +5,42 @@ package com.example.choiseungmin.test_expandable;
  */
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+import java.util.HashMap;
 
-    private String[] titles = {"Chapter One",
-            "Chapter Two",
-            "Chapter Three",
-            "Chapter Four",
-            "Chapter Five",
-            "Chapter Six",
-            "Chapter Seven",
-            "Chapter Eight"};
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
-    private String[] details = {"Item one details",
-            "Item two details", "Item three details",
-            "Item four details", "Item file details",
-            "Item six details", "Item seven details",
-            "Item eight details"};
+    String type;
+    HashMap<Integer,String[]> List;
+    String data[] = new String[3];
 
-    private int[] images = { R.drawable.a,
-            R.drawable.b,
-            R.drawable.c,
-            R.drawable.d,
-            R.drawable.e,
-            R.drawable.a,
-            R.drawable.b,
-            R.drawable.c };
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    RecyclerAdapter(String str, HashMap<Integer,String[]> data)
+    {
+        type = str;
+        List = data;
+    }
 
-        public int currentItem;
-        public ImageView itemImage;
-        public TextView itemTitle;
-        public TextView itemDetail;
 
-        public ViewHolder(View itemView) {
+    class MyViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView Title;
+        public TextView Contents;
+        public TextView Extra;
+
+        public MyViewHolder(View itemView) {
             super(itemView);
             //itemImage = (ImageView)itemView.findViewById(R.id.UserImage);
-            //itemTitle = (TextView)itemView.findViewById(R.id.item_title);
+            Title = (TextView)itemView.findViewById(R.id.TitleText);
+            Contents = (TextView)itemView.findViewById(R.id.contentsText);
+            Extra = (TextView)itemView.findViewById(R.id.ExtraText);
+
             /*
             itemDetail =
                     (TextView)itemView.findViewById(R.id.item_subhead);
@@ -64,26 +57,45 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             });
             */
         }
-    }
 
+    }
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RecyclerAdapter.MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.card_layout, viewGroup, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        MyViewHolder viewHolder1 = new MyViewHolder(v);
+        return viewHolder1;
     }
 
+
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(RecyclerAdapter.MyViewHolder viewHolder, int i) {
         //viewHolder.itemTitle.setText(titles[i]);
         //viewHolder.itemDetail.setText(details[i]);
         //viewHolder.itemImage.setImageResource(images[i]);
+        Log.v("TAG",""+i);
+        if(type.compareTo("fuck1") == 0){
+
+            viewHolder.Extra.setText("fuck");
+            data = List.get(i);
+            viewHolder.Title.setText(data[1]);
+            viewHolder.Contents.setText(data[0] + data[2]);
+
+        }
+        else{
+            viewHolder.Extra.setText("fuck1");
+            data = List.get(i);
+            viewHolder.Title.setText(data[1]);
+            viewHolder.Contents.setText(data[0] + data[2]);
+        }
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        return List.size();
     }
 }
 

@@ -56,13 +56,13 @@
                     android:text="기타 내용입니다" />
             </LinearLayout>
 
-                <Button
-                    android:id="@+id/buttonPopup"
-                    android:layout_gravity="center"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/round_button"
-                    android:text="설정" />
+            <Button
+                android:id="@+id/buttonPopup"
+                android:layout_gravity="center"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_button"
+                android:text="설정" />
 
 
 
