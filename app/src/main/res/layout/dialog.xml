@@ -4,19 +4,27 @@
     android:layout_height="fill_parent"
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:textSize="30sp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_height="wrap_content"
+        android:text="비율을 선택하세요 " />
+
     <RelativeLayout
+        android:layout_below="@+id/textView3"
         android:layout_width="wrap_content"
         android:id="@+id/rr"
         android:layout_height="wrap_content">
 
-        <com.gc.materialdesign.views.Slider
-            android:id="@+id/slider"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="#1E88E5"
-            materialdesign:max="100"
-            materialdesign:min="0"
-            materialdesign:showNumberIndicator="true"/>
+        <com.appyvet.materialrangebar.RangeBar
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/rangebar"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            app:mrb_rangeBar="false"/>
 
     </RelativeLayout>
 

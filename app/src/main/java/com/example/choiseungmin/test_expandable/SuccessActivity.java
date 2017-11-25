@@ -72,12 +72,12 @@ public class SuccessActivity extends AppCompatActivity {
 
                     if(temp.get("SEND_STATUS").toString().compareTo("Y") == 0){
                         requestSendMemo();
-                        new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","UPDATE SEND_MESSAGE SET SEND_STATUS = 'N' WHERE UID = '"+temp.get("UID").toString()+"' AND FUND_NAME = '"+temp.get("FUND_NAME").toString()+"'");
+                        new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","UPDATE SEND_MESSAGE SET SEND_STATUS = 'N' WHERE UID = '"+temp.get("UID").toString()+"' AND FUND_NAME = '"+temp.get("FUND_NAME").toString()+"'");
                     }
 
                 }
 
-                mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
+                mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
 
 
             } catch (JSONException e) {
@@ -223,7 +223,7 @@ public class SuccessActivity extends AppCompatActivity {
         setContentView(R.layout.activity_success);
 
         mHandler = new Handler();
-        mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
+        mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
 
 
         intent = getIntent();

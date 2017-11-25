@@ -109,9 +109,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 builder.show();
                 */
 
+                
                 final Dialog dialog = new Dialog(view.getContext());
                 dialog.setContentView(R.layout.dialog);
                 dialog.setTitle("Title...");
+
 
                 dialog.show();
             }

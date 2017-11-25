@@ -230,10 +230,10 @@ public class card_demo extends AppCompatActivity {
         // 디비에서 정보 get
         MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
         //task.execute("http://192.168.0.3/~koo/android.php", "localhost:3306","root","password","test2","insert into users(id,email,password) values('9','쿠영서','fuck')");
-        task.execute("list","http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from cust_fund", "cust");
+        task.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from cust_fund", "cust");
         MySQL task2 = new MySQL();
 
-        task2.execute("list","http://192.168.0.3/~koo/android.php", "192.168.0.3:3306","root","password","test2","select * from recommend_fund", "recommend");
+        task2.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from recommend_fund", "recommend");
 
 
     }
