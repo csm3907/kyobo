@@ -1,6 +1,7 @@
 package com.example.choiseungmin.test_expandable;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,9 +23,16 @@ public class Dialog2 extends Activity {
         textView = (TextView) findViewById(R.id.textView9);
 
 
+        Intent intent = getIntent();
+        String percnet = intent.getStringExtra("percnet");
+        String order = intent.getStringExtra("order");
+
+
+        textView = (TextView) findViewById(R.id.textView9);
         SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
-        seekbar.setProgress(10);
+        seekbar.setProgress(Integer.parseInt(percnet));
         textView.setText(""+seekbar.getProgress()+"%");
+
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -47,8 +55,15 @@ public class Dialog2 extends Activity {
         });
 
 
+        Button button = (Button)findViewById(R.id.dialogButtonOK);
 
-        setContent();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //DB작업이 필요하다 여기서 ok버튼을 눌러 서버에 사용자 변경 정보를 저장하여야 한다.
+
+            }
+        });
     }
 
     private void setContent() {

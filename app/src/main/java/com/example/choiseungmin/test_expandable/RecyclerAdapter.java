@@ -84,41 +84,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         //viewHolder.itemImage.setImageResource(images[i]);
 
         data = List.get(i);
-        viewHolder.Extra.setText(data[3]);
+        viewHolder.Extra.setText(data[4]);
         viewHolder.Title.setText(data[1]);
-        viewHolder.Contents.setText(data[0] +":::"+ data[2]);
-        viewHolder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                Log.d("popupButton " + i, "shouldPopupShow");
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(
-                        view.getContext());
+        viewHolder.Contents.setText(data[0] +":::"+ data[2]+":::"+data[3]);
+        View.OnClickListener listener = new MyListener(data[3],i);
+        viewHolder.button.setOnClickListener(listener);
+    }
 
-                builder.setTitle("AlertDialog Title");
-                builder.setMessage("AlertDialog Content");
-                builder.setPositiveButton("예",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(view.getContext(),"예를 선택했습니다.",Toast.LENGTH_LONG).show();
-                            }
-                        });
-                builder.setNegativeButton("아니오",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(view.getContext(),"아니오를 선택했습니다.",Toast.LENGTH_LONG).show();
-                            }
-                        });
-                builder.show();
-                */
+    class MyListener implements View.OnClickListener {
+        String data;
+        int i;
+        MyListener(String data, int i){
+            this.data = data;
+            this.i = i;
+        }
+        @Override
+        public void onClick(final View view) {
 
-                Intent intent = new Intent(view.getContext(),Dialog2.class);
-                view.getContext().startActivity(intent);
-                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            Intent intent = new Intent(view.getContext(),Dialog2.class);
+            intent.putExtra("percnet",data);
+            intent.putExtra("order",i);
+            view.getContext().startActivity(intent);
 
-
-            }
-        });
+        }
     }
 
     @Override
@@ -126,4 +114,3 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return List.size();
     }
 }
-

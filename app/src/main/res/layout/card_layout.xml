@@ -34,6 +34,7 @@
                     android:id="@+id/TitleText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:textColor="#008299"
                     android:layout_weight="1"
                     android:textSize="20sp"
@@ -43,6 +44,7 @@
                     android:id="@+id/contentsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:textColor="#5CD1E5"
                     android:layout_weight="1"
                     android:text="내용을 입력하세요" />
@@ -51,6 +53,7 @@
                     android:id="@+id/ExtraText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:textSize="10sp"
                     android:text="기타 내용입니다" />

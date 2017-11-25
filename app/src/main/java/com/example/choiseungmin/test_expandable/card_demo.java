@@ -83,11 +83,12 @@ public class card_demo extends AppCompatActivity {
                     JSONObject temp = results.getJSONObject(i);
                     if(queryType.compareTo("cust") == 0 ) {
                         if (temp.get("UID").toString().compareTo(UID) == 0) {
-                            data = new String[4];
+                            data = new String[5];
                             data[0] = temp.get("UID").toString();
                             data[1] = temp.get("FUND_NAME").toString();
                             data[2] = temp.get("EARNINGS").toString();
-                            data[3] = temp.get("DESCRIPTION").toString();
+                            data[3] = temp.get("RATIO").toString();
+                            data[4] = temp.get("DESCRIPTION").toString();
                             setdata.put(i, data);
 
                         }
@@ -128,11 +129,12 @@ public class card_demo extends AppCompatActivity {
                     else
                     {
                         if(temp.get("UID").toString().compareTo(UID) == 0) {
-                            data = new String[4];
+                            data = new String[5];
                             data[0] = temp.get("UID").toString();
                             data[1] = temp.get("FUND_NAME").toString();
                             data[2] = temp.get("EARNINGS").toString();
-                            data[3] = temp.get("DESCRIPTION").toString();
+                            data[3] = temp.get("RATIO").toString();
+                            data[4] = temp.get("DESCRIPTION").toString();
                             setdata2.put(i, data);
                         }
 
@@ -227,53 +229,12 @@ public class card_demo extends AppCompatActivity {
 
         myContext = this;
 
-                String data[] = new String[4];
-                data[0] = "fffff";
-                data[1] = "fffff";
-                data[2] = "fffff";
-                data[3] = "fffff";
-                setdata.put(0, data);
-
-
-            first = (LinearLayout) findViewById(R.id.first);
-            second = (LinearLayout) findViewById(R.id.second);
-            firstRecyclerView = (GridLayout) findViewById(R.id.firstRecyclerView);
-            secondRecyclerView = (GridLayout) findViewById(R.id.secondRecyclerView);
-
-            first.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if(firstRecyclerView.getVisibility() == View.VISIBLE)
-                        firstRecyclerView.setVisibility(View.GONE);
-                    else
-                        firstRecyclerView.setVisibility(View.VISIBLE);
-                }
-            });
-
-            second.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    if(secondRecyclerView.getVisibility() == View.VISIBLE)
-                        secondRecyclerView.setVisibility(View.GONE);
-                    else
-                        secondRecyclerView.setVisibility(View.VISIBLE);
-                }
-            });
-
-
-            recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-            layoutManager = new LinearLayoutManager(myContext);
-            recyclerView.setLayoutManager(layoutManager);
-            adapter = new RecyclerAdapter(setdata);
-            recyclerView.setAdapter(adapter);
-
-
-
-            // 디비에서 정보 get
-       // MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
-        //task.execute("http://192.168.0.3/~koo/android.php", "localhost:3306","root","password","test2","insert into users(id,email,password) values('9','쿠영서','fuck')");
-       // task.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from cust_fund", "cust");
-       // MySQL task2 = new MySQL();
-
-        //task2.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from recommend_fund", "recommend");
+        // 디비에서 정보 get
+        MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
+        // task.execute("http://192.168.0.3/~koo/android.php", "localhost:3306","root","password","test2","insert into users(id,email,password) values('9','쿠영서','fuck')");
+        task.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from cust_fund", "cust");
+        MySQL task2 = new MySQL();
+        task2.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from recommend_fund", "recommend");
 
 
     }
