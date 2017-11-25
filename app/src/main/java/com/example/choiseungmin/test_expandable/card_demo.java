@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -101,6 +103,7 @@ public class card_demo extends AppCompatActivity {
                         firstRecyclerView = (GridLayout) findViewById(R.id.firstRecyclerView);
                         secondRecyclerView = (GridLayout) findViewById(R.id.secondRecyclerView);
                         secondRecyclerView.setVisibility(View.GONE);
+                        firstRecyclerView.setVisibility(View.GONE);
 
                         first.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
@@ -228,6 +231,8 @@ public class card_demo extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,6 +240,7 @@ public class card_demo extends AppCompatActivity {
         // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // setSupportActionBar(toolbar);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         myContext = this;
 
         // 디비에서 정보 get
@@ -277,4 +283,6 @@ public class card_demo extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

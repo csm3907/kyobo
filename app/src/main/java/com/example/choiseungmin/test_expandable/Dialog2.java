@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -117,6 +118,11 @@ public class Dialog2 extends Activity {
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        return false;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +202,8 @@ public class Dialog2 extends Activity {
                 }
             }
         });
+
+
         //
     }
 

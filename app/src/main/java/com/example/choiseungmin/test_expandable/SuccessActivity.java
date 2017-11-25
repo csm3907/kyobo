@@ -188,8 +188,7 @@ public class SuccessActivity extends AppCompatActivity {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("''yy년 MM월 dd일 E요일");
         SuccessActivity.KakaoTalkMessageBuilder builder = new SuccessActivity.KakaoTalkMessageBuilder();
-        builder.addParam("MESSAGE", message);
-        builder.addParam("DATE", sdf.format(date));
+        builder.addParam("USERID", "김유석");
 
         KakaoTalkService.requestSendMemo(new KakaoTalkResponseCallback<Boolean>() {
                                              @Override
@@ -229,7 +228,6 @@ public class SuccessActivity extends AppCompatActivity {
         mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
 
-
         Intent intent2 = new Intent(this,MainActivity.class);
         startActivity(intent2);
         finish();
@@ -246,4 +244,6 @@ public class SuccessActivity extends AppCompatActivity {
                 .fit()
                 .into(iv_user_profile);
     }
+
+
 }

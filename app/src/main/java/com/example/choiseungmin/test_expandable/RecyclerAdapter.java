@@ -82,6 +82,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     }
 
 
+
     @Override
     public void onBindViewHolder(final RecyclerAdapter.MyViewHolder viewHolder, final int i) {
         //viewHolder.itemTitle.setText(titles[i]);

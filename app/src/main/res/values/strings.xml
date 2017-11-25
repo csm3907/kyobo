@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test_Expandable</string>
+    <string name="app_name">변액보험 관리서비스</string>
     <string name="myString">Mine</string>
     <string name="kakao_app_key">25b54a1599e5bf05b906f9e5a468247c</string>
     <string name="kakao_scheme">kakao25b54a1599e5bf05b906f9e5a468247c</string>
