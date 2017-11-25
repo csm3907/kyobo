@@ -87,23 +87,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         viewHolder.Extra.setText(data[4]);
         viewHolder.Title.setText(data[1]);
         viewHolder.Contents.setText(data[0] +":::"+ data[2]+":::"+data[3]);
-        View.OnClickListener listener = new MyListener(data[3],i);
+        View.OnClickListener listener = new MyListener(data[3],data[1],data[0]);
         viewHolder.button.setOnClickListener(listener);
     }
 
     class MyListener implements View.OnClickListener {
-        String data;
-        int i;
-        MyListener(String data, int i){
-            this.data = data;
-            this.i = i;
+        String percent;
+        String fund_name;
+        String uid;
+        MyListener(String percent,String fund_name,String uid){
+            this.percent = percent;
+            this.fund_name = fund_name;
+            this.uid = uid;
         }
         @Override
         public void onClick(final View view) {
 
             Intent intent = new Intent(view.getContext(),Dialog2.class);
-            intent.putExtra("percnet",data);
-            intent.putExtra("order",i);
+            intent.putExtra("percnet",percent);
+            intent.putExtra("uid",uid);
+            intent.putExtra("fund_name",fund_name);
             view.getContext().startActivity(intent);
 
         }

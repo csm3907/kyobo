@@ -87,13 +87,13 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         listTitleTextView.setText(listTitle);
 
         if(listPosition == 0){
-            convertView.setBackgroundColor(Color.rgb(178,235,244));
+            convertView.setBackgroundColor(Color.rgb(54,138,255));
         }else if(listPosition == 1){
-            convertView.setBackgroundColor(Color.rgb(255,178,217));
+            convertView.setBackgroundColor(Color.rgb(0,165,0));
         }else if(listPosition == 2){
-            convertView.setBackgroundColor(Color.rgb(183,240,177));
+            convertView.setBackgroundColor(Color.rgb(234,234,234));
         }else{
-            convertView.setBackgroundColor(Color.rgb(250,244,192));
+            convertView.setBackgroundColor(Color.rgb(255,255,255));
         }
 
         return convertView;
