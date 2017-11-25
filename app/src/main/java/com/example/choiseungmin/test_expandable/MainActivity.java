@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(getApplicationContext(),card_demo.class);
-        startActivity(intent);
-
         imageView = findViewById(R.id.imageView);
         expandableListView = (ExpandableListView) findViewById(R.id.expandableListView);
         expandableListDetail = ExpandableListDataPump.getData();

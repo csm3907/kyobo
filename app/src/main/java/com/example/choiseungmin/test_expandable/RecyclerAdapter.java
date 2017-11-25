@@ -5,6 +5,7 @@ package com.example.choiseungmin.test_expandable;
  */
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     HashMap<Integer,String[]> List;
     String data[] = new String[3];
-
+    public SeekBar seekBar;
 
     RecyclerAdapter(HashMap<Integer,String[]> data)
     {
@@ -38,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         public TextView Extra;
         public Button button;
 
+
         public MyViewHolder(final View itemView) {
             super(itemView);
             //itemImage = (ImageView)itemView.findViewById(R.id.UserImage);
@@ -45,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             Contents = (TextView)itemView.findViewById(R.id.contentsText);
             Extra = (TextView)itemView.findViewById(R.id.ExtraText);
             button = (Button)itemView.findViewById(R.id.buttonPopup);
-
+            seekBar = (SeekBar)itemView.findViewById(R.id.seekBar);
             /*
             itemDetail =
                     (TextView)itemView.findViewById(R.id.item_subhead);
@@ -109,17 +112,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 builder.show();
                 */
 
-                
-                final Dialog dialog = new Dialog(view.getContext());
-                dialog.setContentView(R.layout.dialog);
-                dialog.setTitle("Title...");
+                Intent intent = new Intent(view.getContext(),Dialog2.class);
+                view.getContext().startActivity(intent);
 
-
-                dialog.show();
             }
         });
-
-
     }
 
     @Override

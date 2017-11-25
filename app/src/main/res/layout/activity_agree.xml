@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="298dp"
+        android:layout_width="350dp"
         android:layout_height="273dp"
         android:scaleType="centerCrop"
         android:layout_marginTop="43dp"
@@ -17,14 +17,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ills" />
+        app:srcCompat="@drawable/kakao" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="추천받기"
+        android:text="카카오톡 알림톡 사전 동의"
         android:textColor="#4a4a4a"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -40,7 +40,8 @@
         android:layout_marginEnd="39dp"
         android:layout_marginStart="39dp"
         android:lineSpacingExtra="7dp"
-        android:text="사용자의 정보를 활용하여 변액보험 펀드 추천 서비스를 이용가능합니다."
+        android:text="자신의 펀드 수익률을 이제 카카오톡에서
+        간편하게 확인하실 수 있습니다."
         android:textAlignment="center"
         android:textColor="#858585"
         android:textSize="16sp"
