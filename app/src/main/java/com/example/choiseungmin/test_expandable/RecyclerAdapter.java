@@ -27,6 +27,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     String data[] = new String[3];
     public SeekBar seekBar;
     String type;
+    static int Sum;
+    static int max;
 
     RecyclerAdapter(HashMap<Integer,String[]> data, String type)
     {
@@ -91,7 +93,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             viewHolder.Title.setText(data[1]);
             viewHolder.Contents.setText(data[0] + ":::" + data[2] + ":::" + data[3]);
             View.OnClickListener listener = new MyListener( data[0],data[1],data[3] , data[4]);
+            max += Integer.parseInt(data[3]);
             viewHolder.button.setOnClickListener(listener);
+
         }
         else
         {

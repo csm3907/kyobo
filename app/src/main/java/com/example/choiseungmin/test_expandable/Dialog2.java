@@ -35,6 +35,8 @@ public class Dialog2 extends Activity {
     private String description;
     Context myContext ;
     String type;
+    int remain = 100 - RecyclerAdapter.max;
+
 
     class MySQL extends AsyncTask<String, Void, String> {
 
@@ -136,6 +138,13 @@ public class Dialog2 extends Activity {
 
         textView = (TextView) findViewById(R.id.textView9);
         SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
+
+        if(remain + Integer.parseInt(percnet) >= 100)
+            seekbar.setMax(100);
+        else
+            seekbar.setMax(remain + Integer.parseInt(percnet));
+
+
         seekbar.setProgress(Integer.parseInt(percnet));
         textView.setText(""+seekbar.getProgress()+"%");
         seekbarValue = ""+ seekbar.getProgress();
@@ -166,16 +175,24 @@ public class Dialog2 extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(type.compareTo("cust") == 0) {
-                    MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
-                    task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "UPDATE CUST_FUND SET RATIO = '" + seekbarValue + "' WHERE UID = '" + id + "' AND FUND_NAME = '" + fund_name + "'");
-                }
-                else
-                {
+                if(seekbarValue.compareTo("0") != 0) {
+                    if (type.compareTo("cust") == 0) {
+                        MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
+                        task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "UPDATE CUST_FUND SET RATIO = '" + seekbarValue + "' WHERE UID = '" + id + "' AND FUND_NAME = '" + fund_name + "'");
+                        RecyclerAdapter.max = 0;
+                    } else {
 
-                    Log.v("TAG",""+"DELETE FROM RECOMMEND_FUND  WHERE UID = '"+id+"' AND FUND = '"+fund_name+"'");
-                    MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
-                    task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "insert into cust_fund(UID,FUND_NAME,EARNINGS,RATIO,DESCRIPTION) values('"+id+"','"+fund_name+"','"+0+"','"+seekbarValue+"','"+description+"')");
+                        Log.v("TAG", "" + "DELETE FROM RECOMMEND_FUND  WHERE UID = '" + id + "' AND FUND = '" + fund_name + "'");
+                        MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
+                        task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "insert into cust_fund(UID,FUND_NAME,EARNINGS,RATIO,DESCRIPTION) values('" + id + "','" + fund_name + "','" + 0 + "','" + seekbarValue + "','" + description + "')");
+                        RecyclerAdapter.max = 0;
+                    }
+                }
+                else{
+                    Intent intent = new Intent(myContext,card_demo.class);
+                    myContext.startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
             }
         });

@@ -55,7 +55,6 @@ public class card_demo extends AppCompatActivity {
     GridLayout secondRecyclerView;
 
     Context myContext;
-    static int Sum;
 
 
     String UID = "203014010594";

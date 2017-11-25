@@ -11,48 +11,12 @@
     tools:context=".card_demo" >
 
 
-    <RelativeLayout
-        android:id="@+id/listview"
+    <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/red"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/imageView4"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/myString"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/login" />
-
-        <ImageButton
-            android:id="@+id/imageView5"
-            android:layout_width="30dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/myString"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/menu" />
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="100dp"
-            android:contentDescription="@string/myString"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            app:srcCompat="@drawable/kyobo" />
-
-    </RelativeLayout>
-
+        android:scaleType="fitXY"
+        android:layout_height="56dp"
+        app:srcCompat="@drawable/toolbar" />
 
     <LinearLayout
         android:layout_marginTop="10dp"
