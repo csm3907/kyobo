@@ -3,6 +3,7 @@ package com.example.choiseungmin.test_expandable;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.kakao.message.template.ButtonObject;
@@ -53,6 +55,8 @@ public class card_demo extends AppCompatActivity {
     GridLayout secondRecyclerView;
 
     Context myContext;
+    static int Sum;
+
 
     String UID = "203014010594";
 
@@ -120,7 +124,7 @@ public class card_demo extends AppCompatActivity {
                         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
                         layoutManager = new LinearLayoutManager(myContext);
                         recyclerView.setLayoutManager(layoutManager);
-                        adapter = new RecyclerAdapter(setdata);
+                        adapter = new RecyclerAdapter(setdata,"cust");
                         recyclerView.setAdapter(adapter);
 
 
@@ -142,7 +146,7 @@ public class card_demo extends AppCompatActivity {
                         recyclerView2 = (RecyclerView) findViewById(R.id.recycler_view2);
                         layoutManager2 = new LinearLayoutManager(myContext);
                         recyclerView2.setLayoutManager(layoutManager2);
-                        adapter2 = new RecyclerAdapter(setdata2);
+                        adapter2 = new RecyclerAdapter(setdata2,"recommen");
                         recyclerView2.setAdapter(adapter2);
 
                     }
@@ -235,6 +239,15 @@ public class card_demo extends AppCompatActivity {
         task.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from cust_fund", "cust");
         MySQL task2 = new MySQL();
         task2.execute("list","http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from recommend_fund", "recommend");
+
+        ImageButton buttonGraph = (ImageButton)findViewById(R.id.imageButtonGraph);
+        buttonGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),GraphActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
 
 
     }

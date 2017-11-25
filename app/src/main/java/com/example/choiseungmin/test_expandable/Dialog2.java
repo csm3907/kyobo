@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -26,13 +27,15 @@ import java.net.URL;
 
 public class Dialog2 extends Activity {
 
-    private Button mConfirm, mCancel;
     private TextView textView;
     private String seekbarValue;
     private String percnet ;
     private String id;
     private String fund_name;
+    private String description;
     Context myContext ;
+    String type;
+
     class MySQL extends AsyncTask<String, Void, String> {
 
         @Override
@@ -43,10 +46,18 @@ public class Dialog2 extends Activity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Intent intent = new Intent(myContext,card_demo.class);
-            myContext.startActivity(intent);
-            finish();
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            if(type.compareTo("cust") == 0) {
+                Intent intent = new Intent(myContext,card_demo.class);
+                myContext.startActivity(intent);
+                finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+            else{
+                type = "cust";
+                new MySQL().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "DELETE FROM RECOMMEND_FUND  WHERE UID = '"+id+"' AND FUND = '"+fund_name+"';");
+
+            }
+
 
         }
 
@@ -120,12 +131,14 @@ public class Dialog2 extends Activity {
         percnet = intent.getStringExtra("percnet");
         id = intent.getStringExtra("uid");
         fund_name = intent.getStringExtra("fund_name");
+        type = intent.getStringExtra("type");
+        description = intent.getStringExtra("description");
 
         textView = (TextView) findViewById(R.id.textView9);
         SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
         seekbar.setProgress(Integer.parseInt(percnet));
         textView.setText(""+seekbar.getProgress()+"%");
-
+        seekbarValue = ""+ seekbar.getProgress();
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -153,10 +166,20 @@ public class Dialog2 extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
-                task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","UPDATE CUST_FUND SET RATIO = '"+seekbarValue+"' WHERE UID = '"+id+"' AND FUND_NAME = '"+fund_name+"'");
+                if(type.compareTo("cust") == 0) {
+                    MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
+                    task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "UPDATE CUST_FUND SET RATIO = '" + seekbarValue + "' WHERE UID = '" + id + "' AND FUND_NAME = '" + fund_name + "'");
+                }
+                else
+                {
+
+                    Log.v("TAG",""+"DELETE FROM RECOMMEND_FUND  WHERE UID = '"+id+"' AND FUND = '"+fund_name+"'");
+                    MySQL task = new MySQL();   //"insert into users(id,email,password) values('7','fuck','fuck')" // "select * from users"
+                    task.execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306", "root", "password", "test2", "insert into cust_fund(UID,FUND_NAME,EARNINGS,RATIO,DESCRIPTION) values('"+id+"','"+fund_name+"','"+0+"','"+seekbarValue+"','"+description+"')");
+                }
             }
         });
+        //
     }
 
     private void setContent() {

@@ -26,10 +26,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     HashMap<Integer,String[]> List;
     String data[] = new String[3];
     public SeekBar seekBar;
+    String type;
 
-    RecyclerAdapter(HashMap<Integer,String[]> data)
+    RecyclerAdapter(HashMap<Integer,String[]> data, String type)
     {
         List = data;
+        this.type = type;
     }
 
 
@@ -84,21 +86,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         //viewHolder.itemImage.setImageResource(images[i]);
 
         data = List.get(i);
-        viewHolder.Extra.setText(data[4]);
-        viewHolder.Title.setText(data[1]);
-        viewHolder.Contents.setText(data[0] +":::"+ data[2]+":::"+data[3]);
-        View.OnClickListener listener = new MyListener(data[3],data[1],data[0]);
-        viewHolder.button.setOnClickListener(listener);
+        if(type.compareTo("cust") == 0) {
+            viewHolder.Extra.setText(data[4]);
+            viewHolder.Title.setText(data[1]);
+            viewHolder.Contents.setText(data[0] + ":::" + data[2] + ":::" + data[3]);
+            View.OnClickListener listener = new MyListener( data[0],data[1],data[3] , data[4]);
+            viewHolder.button.setOnClickListener(listener);
+        }
+        else
+        {
+            if(data[4].compareTo("") == 0)
+                data[4] = "0";
+            viewHolder.Extra.setText(data[3]);
+            viewHolder.Title.setText(data[1]);
+            viewHolder.Contents.setText(data[0] + ":::" + data[2] + ":::" + data[4]);
+            View.OnClickListener listener = new MyListener( data[0],data[1],data[4] , data[3]);
+            viewHolder.button.setOnClickListener(listener);
+        }
     }
 
     class MyListener implements View.OnClickListener {
         String percent;
         String fund_name;
         String uid;
-        MyListener(String percent,String fund_name,String uid){
+        String description;
+        MyListener(String uid,String fund_name,String percent,String description ){
             this.percent = percent;
             this.fund_name = fund_name;
             this.uid = uid;
+            this.description = description;
         }
         @Override
         public void onClick(final View view) {
@@ -107,6 +123,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             intent.putExtra("percnet",percent);
             intent.putExtra("uid",uid);
             intent.putExtra("fund_name",fund_name);
+            intent.putExtra("type",type);
+            intent.putExtra("description",description);
             view.getContext().startActivity(intent);
 
         }

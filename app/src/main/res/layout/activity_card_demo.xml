@@ -59,31 +59,29 @@
         android:layout_width="match_parent"
         android:background="@color/red"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textCheguin"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="채권형 : BLA BLA BLA" />
-
-        <TextView
-            android:id="@+id/textJusic"
-            android:gravity="center"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_vertical"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:text="주식형 : BLA BLA BLA" />
 
-        <TextView
-            android:id="@+id/textTemp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="temp형 : BLA BLA BLA" />
+        <ImageButton
+            android:id="@+id/imageButtonGraph"
+            android:layout_width="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:layout_height="40dp"
+            android:background="@drawable/background_transparent"
+            android:scaleType="fitCenter"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/infopopup" />
+
+
     </LinearLayout>
 
     <LinearLayout

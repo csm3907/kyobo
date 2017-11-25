@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         expandableListAdapter = new CustomExpandableListAdapter(this, expandableListTitle, expandableListDetail);
         expandableListView.setAdapter(expandableListAdapter);
 
-
         String key = getKeyHash(this);
         Log.d("KEY ", key);
 
@@ -91,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
 
                 //imageView.setVisibility(View.GONE);
             }
@@ -103,9 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
 
                 //imageView.setVisibility(View.VISIBLE);
 
@@ -118,21 +111,9 @@ public class MainActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
 
                 if(groupPosition == 1){
-                    Toast.makeText(
-                            getApplicationContext(),
-                            expandableListTitle.get(groupPosition)
-                                    + " -> "
-                                    + expandableListDetail.get(
-                                    expandableListTitle.get(groupPosition)).get(
-                                    childPosition), Toast.LENGTH_SHORT
-                    ).show();
 
 
                     if(childPosition == 6){
-                        Toast.makeText(
-                                getApplicationContext(),
-                                "카카오톡 링크 생성", Toast.LENGTH_SHORT
-                        ).show();
 
                         Intent intent = new Intent(getApplicationContext(),AgreeActivity.class);
                         startActivity(intent);

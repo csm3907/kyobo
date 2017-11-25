@@ -16,21 +16,22 @@ public class ExpandableListDataPump {
         basketball.add("변액보험조회");
         basketball.add("거래내역조회");
         basketball.add("자동이체");
-        basketball.add("공유하기");
+        basketball.add("카카오톡 알림톡 사용");
 
         List<String> cricket = new ArrayList<String>();
-        cricket.add("India");
-        cricket.add("Pakistan");
-        cricket.add("Australia");
-        cricket.add("England");
-        cricket.add("South Africa");
+        cricket.add("조회상환");
+        cricket.add("신청");
+        cricket.add("조회상환");
+        cricket.add("신청");
 
         List<String> football = new ArrayList<String>();
-        football.add("Brazil");
-        football.add("Spain");
-        football.add("Germany");
-        football.add("Netherlands");
-        football.add("Italy");
+        football.add("펀드계약조회");
+        football.add("펀드매수");
+        football.add("펀드환매");
+        football.add("신탁계약조회");
+        football.add("신탁입금");
+        football.add("신탁출금");
+
 
         List<String> temp = new ArrayList<String>();
         temp.add("공인인증서");

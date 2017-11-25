@@ -47,9 +47,10 @@
 
         <activity
             android:name=".Dialog2"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert">
-        </activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert" ></activity>
 
+        <activity android:name=".GraphActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.Alert"></activity>
     </application>
 
 </manifest>
