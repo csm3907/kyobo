@@ -146,12 +146,16 @@ public class SuccessActivity extends AppCompatActivity {
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
     }
 
     private void redirectSignupActivity() {
         final Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
     }
 
     private abstract class KakaoTalkResponseCallback<T> extends TalkResponseCallback<T> {
@@ -226,20 +230,10 @@ public class SuccessActivity extends AppCompatActivity {
         mHandler.postDelayed(new Runnable() {public void run() {new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","select * from SEND_MESSAGE");}}, 5000);
 
 
-        intent = getIntent();
-
-        url = intent.getStringExtra("url");
-        nickname = intent.getStringExtra("nickname");
-        email = intent.getStringExtra("email");
-
-        tv_user_id = (TextView) findViewById(R.id.tv_user_id);
-        tv_user_name = (TextView) findViewById(R.id.tv_user_name);
-        iv_user_profile = (ImageView) findViewById(R.id.iv_user_profile);
-
-        Log.d("result : ",url + nickname + email);
-        setLayoutText();
-
-
+        Intent intent2 = new Intent(this,MainActivity.class);
+        startActivity(intent2);
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
     }
 

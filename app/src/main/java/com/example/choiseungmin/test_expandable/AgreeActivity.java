@@ -112,8 +112,6 @@ public class AgreeActivity extends AppCompatActivity {
                 public void onSuccess(UserProfile userProfile) {
                     //로그인에 성공하면 로그인한 사용자의 일련번호, 닉네임, 이미지url등을 리턴합니다.
                     //사용자 ID는 보안상의 문제로 제공하지 않고 일련번호는 제공합니다.
-
-
                     Successintent = new Intent(AgreeActivity.this, SuccessActivity.class);
                     Successintent = Successintent.putExtra("nickname", userProfile.getNickname());
 
@@ -134,6 +132,7 @@ public class AgreeActivity extends AppCompatActivity {
                     Session.getCurrentSession().removeCallback(callback);
                     startActivity(Successintent);
                     finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
             });
 

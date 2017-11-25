@@ -114,6 +114,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
                 Intent intent = new Intent(view.getContext(),Dialog2.class);
                 view.getContext().startActivity(intent);
+                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+
 
             }
         });
