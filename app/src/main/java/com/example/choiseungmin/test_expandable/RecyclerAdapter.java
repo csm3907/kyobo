@@ -6,6 +6,7 @@ package com.example.choiseungmin.test_expandable;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -88,10 +89,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         //viewHolder.itemImage.setImageResource(images[i]);
 
         data = List.get(i);
-        if(type.compareTo("cust") == 0) {
+        if(type.compareTo("cust") == 0) {   //data[0] id data[2] tndlr
+            viewHolder.Extra.setVisibility(View.GONE);
             viewHolder.Extra.setText(data[4]);
             viewHolder.Title.setText(data[1]);
-            viewHolder.Contents.setText(data[0] + ":::" + data[2] + ":::" + data[3]);
+            if(Float.valueOf(data[2])< 0){
+                viewHolder.Contents.setTextColor(Color.RED);
+            }else{
+
+            }
+            viewHolder.Contents.setText(data[2]+"%");
+            viewHolder.button.setText(""+data[3]+"%");
             View.OnClickListener listener = new MyListener( data[0],data[1],data[3] , data[4]);
             max += Integer.parseInt(data[3]);
             viewHolder.button.setOnClickListener(listener);
@@ -101,9 +109,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         {
             if(data[4].compareTo("") == 0)
                 data[4] = "0";
+            viewHolder.Extra.setVisibility(View.GONE);
             viewHolder.Extra.setText(data[3]);
             viewHolder.Title.setText(data[1]);
-            viewHolder.Contents.setText(data[0] + ":::" + data[2] + ":::" + data[4]);
+
+            viewHolder.Contents.setVisibility(View.GONE);
             View.OnClickListener listener = new MyListener( data[0],data[1],data[4] , data[3]);
             viewHolder.button.setOnClickListener(listener);
         }

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dip"
-    android:layout_height="450dip"
+    android:layout_height="330dip"
     android:orientation="vertical"
     android:background="#FFFFFF"
     android:layout_centerInParent="true">
@@ -13,25 +14,28 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:layout_marginBottom="30dp"
-        android:text="코스피 곡선"
-        android:textSize="30sp" />
+        android:text="KOSPI지수(2017.07 ~ 11.17)"
+        android:textSize="21sp" />
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="150dp"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true" />
+        android:layout_below="@+id/GraphTitle" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp"
-        android:text="해당 시간에 맞는 코스피 주가의 값입니다"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/graph"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="주식형펀드, 인덱스형펀드일 경우 높은 수익률을 기대할 수 있습니다."
         android:textSize="15sp" />
 
 

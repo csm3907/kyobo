@@ -72,7 +72,7 @@ public class SuccessActivity extends AppCompatActivity {
 
                     if(temp.get("SEND_STATUS").toString().compareTo("Y") == 0){
                         requestSendMemo();
-                        new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","UPDATE SEND_MESSAGE SET SEND_STATUS = 'N' WHERE UID = '"+temp.get("UID").toString()+"' AND FUND_NAME = '"+temp.get("FUND_NAME").toString()+"'");
+                        new BackGround().execute("http://172.30.70.42/~koo/android.php", "172.30.70.42:3306","root","password","test2","UPDATE SEND_MESSAGE SET SEND_STATUS = 'D' WHERE UID = '"+temp.get("UID").toString()+"' AND FUND_NAME = '"+temp.get("FUND_NAME").toString()+"'");
                     }
 
                 }

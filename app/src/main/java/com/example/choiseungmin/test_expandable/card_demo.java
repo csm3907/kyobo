@@ -100,13 +100,16 @@ public class card_demo extends AppCompatActivity {
                         second = (LinearLayout) findViewById(R.id.second);
                         firstRecyclerView = (GridLayout) findViewById(R.id.firstRecyclerView);
                         secondRecyclerView = (GridLayout) findViewById(R.id.secondRecyclerView);
+                        secondRecyclerView.setVisibility(View.GONE);
 
                         first.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 if(firstRecyclerView.getVisibility() == View.VISIBLE)
                                     firstRecyclerView.setVisibility(View.GONE);
-                                else
+                                else {
                                     firstRecyclerView.setVisibility(View.VISIBLE);
+                                    secondRecyclerView.setVisibility(View.GONE);
+                                }
                             }
                         });
 
@@ -114,8 +117,10 @@ public class card_demo extends AppCompatActivity {
                             public void onClick(View v) {
                                 if(secondRecyclerView.getVisibility() == View.VISIBLE)
                                     secondRecyclerView.setVisibility(View.GONE);
-                                else
+                                else {
                                     secondRecyclerView.setVisibility(View.VISIBLE);
+                                    firstRecyclerView.setVisibility(View.GONE);
+                                }
                             }
                         });
 
